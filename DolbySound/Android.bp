@@ -1,0 +1,15 @@
+//
+// Automatically generated file. DO NOT MODIFY
+//
+
+android_app_import {
+	name: "DolbySound",
+	apk: "DolbySound.apk",
+	certificate: "platform",
+	privileged: true,
+	system_ext_specific: true,
+        overrides: [
+            "MusicFX", 
+            "AudioFX",
+        ],
+}

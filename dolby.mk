@@ -36,9 +36,27 @@ PRODUCT_COPY_FILES += \
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.dolby.dax.version=DAX3_3.7.0.8_r1
 
-# DolbyManager
-PRODUCT_PACKAGES += \
-    DolbyManager
+# Default to true if not set
+TARGET_USE_DEXUI := true
+
+ifeq ($(TARGET_USE_DEXUI),true)
+    # DaxUI2
+    PRODUCT_PACKAGES += \
+        DolbySound \
+        daxService
+
+    # Dolby
+    PRODUCT_VENDOR_PROPERTIES += \
+        ro.audio.ignore_effects=false
+
+    # Proprietary-files
+    PRODUCT_COPY_FILES += \
+        $(DOLBY_PATH)/proprietary/system_ext/etc/permissions/com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.dolby.daxservice.xml
+else
+    # DolbyManager
+    PRODUCT_PACKAGES += \
+        DolbyManager
+endif
 
 # Proprietary-files
 PRODUCT_COPY_FILES += \
